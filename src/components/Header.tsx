@@ -33,7 +33,7 @@ export default function Header() {
           <div className="flex flex-1 justify-center">
             <a href="#home">
               <img
-                src="logo.png"
+                src="./logo.png"
                 alt="Babal Restaurant"
                 className="h-20 w-auto"
               />
