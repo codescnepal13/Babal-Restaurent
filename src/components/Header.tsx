@@ -14,14 +14,14 @@ export default function Header() {
         <div className="hidden lg:flex flex-1 items-center gap-10">
          <Link
            to="/"
-            className="nav-link text-white hover:text-yellow-500 transition-colors duration-300"
+            className="nav-link text-white hover:text-[#E4B951] transition-colors duration-300"
           >
              Home
            </Link>
 
           <Link
             to="/about"
-            className="nav-link text-white hover:text-yellow-500 transition-colors duration-300"
+            className="nav-link text-white hover:text-[#E4B951] transition-colors duration-300"
           >
           About
          </Link>
@@ -41,14 +41,17 @@ export default function Header() {
           </div>
 
           {/* Right links */}
-          <div className="hidden lg:flex flex-1 items-center justify-end gap-10">
-            <a href="#contactus" className="nav-link text-white">Contact us</a>
-            <a
-              href="#menu"
-              className="px-8 py-2.5 border border-white text-white rounded hover:bg-black hover:text-white transition"
-            >
-              Menu
-            </a>
+          <div className="hidden hover:[#E4B951] lg:flex flex-1 items-center justify-end gap-10">
+            <Link to="/contactus" className="nav-link text-white hover:text-[#E4B951] transition-colors duration-300">Contact us</Link>
+          <Link
+            to="/menu"
+            className="px-8 py-2.5 border border-white text-white 
+             hover:border-[#E4B951] hover:text-[#E4B951] 
+             rounded hover:bg-black transition"
+          >
+             Menu 
+          </Link>
+
           </div>
 
           {/* Mobile menu button */}

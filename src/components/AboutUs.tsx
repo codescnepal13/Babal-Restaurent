@@ -80,10 +80,10 @@ const AboutUs: React.FC = () => {
 
           {/* Content */}
           <div className="order-1 md:order-2">
-            <h3 className="font-great-vibes text-2xl justify-end md:text-3xl  mb-4">
+            <h3 className="font-great-vibes text-right text-2xl justify-end md:text-3xl  mb-4">
               The Taste of Port
             </h3>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#E4B951] font-inter mb-8">
+            <h2 className="text-3xl md:text-4xl text-right lg:text-5xl text-[#E4B951] font-inter mb-8">
               Indian Culture
             </h2>
             <div className="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed">

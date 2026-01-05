@@ -13,7 +13,7 @@ export default function HeroSection() {
       <div className="absolute top-32 left-0 w-full flex justify-center z-10">
         <h1 className="text-5xl md:text-6xl tracking-wide text-[#E4B951]">
           <span className="font-great-vibes text-white inline-block rotate-[-20deg]">The</span> 
-          <span className="block ml-20 font-bold">Rich Flavors of Two</span>
+          <span className="block ml-20 font-bold font-anton">Rich Flavors of Two</span>
           <span className="block ml-150 text-white font-great-vibes inline-block rotate-[-20deg]">Cultures.</span>
         </h1>
       </div>

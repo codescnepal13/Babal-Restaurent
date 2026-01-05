@@ -7,7 +7,7 @@ export default function AboutUsHeroSec() {
   <img
     src="/aboutusherosec.jpg"
     alt="Restaurant Interior"
-    className="w-full h-90 object-cover opacity-40 rounded-b-[50%]"
+    className="w-full h-90 object-cover opacity-35 rounded-b-[50%]"
   />
 </div>
 
