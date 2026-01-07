@@ -33,7 +33,7 @@ export default function Header() {
           <div className="flex flex-1 justify-center lg:justify-center">
             <Link to="/" onClick={closeMenu}>
               <img
-                src="./logo.png"
+                src="/logo.png"
                 alt="Babal Restaurant"
                 className="h-16 sm:h-20 w-auto transition-transform duration-300 hover:scale-105"
               />

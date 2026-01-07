@@ -35,7 +35,7 @@ const FoodDetail = ({
   };
 
   return (
-    <div className="min-h-screen pb-20 bg-black">
+    <div className="min-h-screen bg-black">
       <div className="bg-black text-white px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10 lg:py-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 md:items-center">

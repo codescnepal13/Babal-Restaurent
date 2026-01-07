@@ -62,7 +62,7 @@ const PopularCuisineSection: React.FC = () => {
               <img
                 src="/qs.png"
                 alt="Quick Snacks"
-                className="w-full sm:h-80 md:h-96 object-cover"
+                className="w-full sm:h-80 md:h-[500px] lg:h-96 object-cover"
               />
               <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
