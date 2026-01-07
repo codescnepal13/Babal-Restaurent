@@ -27,6 +27,13 @@ export default function Header() {
             >
               About
             </Link>
+
+            <Link
+              to="/blog"
+              className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
+            >
+              Blog
+            </Link>
           </div>
 
           {/* Logo (CENTER) */}
@@ -87,6 +94,14 @@ export default function Header() {
                 className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
               >
                 About
+              </Link>
+
+              <Link 
+                to="/blog" 
+                onClick={closeMenu}
+                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
+              >
+                Blog
               </Link>
               
               <Link 
