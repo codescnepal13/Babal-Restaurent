@@ -1,4 +1,4 @@
-/* @import "tailwindcss";
+@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 
@@ -9,11 +9,11 @@
   --font-anton: "Anton", sans-serif;
   --font-anton-sc: "Anton SC", sans-serif;
   --font-bebas-neue: "Bebas Neue", sans-serif;
-} */
+}
 
 
 
-@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
 
 /* Tailwind MUST come after font imports */
 @import "tailwindcss";
@@ -25,4 +25,4 @@
   --font-anton: "Anton", sans-serif;
   --font-anton-sc: "Anton SC", sans-serif;
   --font-bebas-neue: "Bebas Neue", sans-serif;
-}
+} */
