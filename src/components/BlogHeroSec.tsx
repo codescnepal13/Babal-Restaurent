@@ -12,12 +12,12 @@ export default function BlogHeroSec() {
       </div>
 
       {/* Overlay text */}
-      <div className="absolute top-16 sm:top-20 md:top-32 left-0 w-full flex justify-center z-10 px-4 sm:px-6">
-        <h1 className="text-3xl font-anton sm:text-4xl md:text-5xl lg:text-6xl tracking-wide text-[#E4B951]">
+      <div className="absolute top-40 sm:top-20 md:top-32 lg:top-50 left-0 w-full flex justify-center z-10 px-4 sm:px-6">
+        <h1 className="text-5xl font-great-vibes sm:text-4xl md:text-5xl lg:text-6xl tracking-wide text-[#E4B951]">
             Blog
         </h1>
       </div>
-     
+   
     </section>
   );
 }
