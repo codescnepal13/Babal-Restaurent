@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pencil, Trash2, X } from 'lucide-react';
+import { Pencil, Trash2 } from 'lucide-react';
 
 interface MenuItem {
   id: string;
