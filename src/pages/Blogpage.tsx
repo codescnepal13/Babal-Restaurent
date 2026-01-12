@@ -1,6 +1,6 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import BlogHeroSec from '../components/BlogHeroSec'
+import BlogHeroSec from '../components/Herosection/BlogHeroSec'
 import BlogDisplay from '../components/Blog'
 
 const Blogpage = () => {

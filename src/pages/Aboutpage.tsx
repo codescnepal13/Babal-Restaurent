@@ -1,4 +1,4 @@
-import AboutUsHeroSec from '../components/AboutUsHeroSec'
+import AboutUsHeroSec from '../components/Herosection/AboutUsHeroSec'
 import AboutUs from '../components/AboutUs'
 import Header from '../components/Header'
 import Footer from '../components/Footer'

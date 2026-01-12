@@ -10,7 +10,7 @@ export default function HeroSection() {
       />
 
       {/* Overlay text */}
-      <div className="absolute top-30 sm:top-24 md:top-32 left-0 w-full flex justify-center z-10 px-4">
+      <div className="absolute top-20 sm:top-24 md:top-32 left-0 w-full flex justify-center z-10 px-4">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-wide text-[#E4B951]">
           <span className="font-great-vibes text-white inline-block rotate-[-20deg] text-2xl sm:text-3xl md:text-4xl lg:text-5xl">The</span> 
           <span className="block ml-6 sm:ml-12 md:ml-10 lg:ml-20 font-bold font-anton">Rich Flavors of Two</span>

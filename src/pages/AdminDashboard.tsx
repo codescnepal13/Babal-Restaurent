@@ -7,7 +7,7 @@ import Reservation from '../components/Adminpage/Reservation';
 import BlogManger from '../components/Adminpage/AddBlogForm';
 
 const AdminDashboard: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('');
+  const [activeTab, setActiveTab] = useState('dashboard');
 
   return (
     <div className="flex min-h-screen bg-zinc-50">

@@ -1,6 +1,6 @@
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import ContactUsHeroSec from '../components/ContactUsHeroSec';
+import ContactUsHeroSec from '../components/Herosection/ContactUsHeroSec';
 import ReservationForm from '../components/ReservationForm';
 
 const Contactpage = () => {

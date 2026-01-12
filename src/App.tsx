@@ -8,8 +8,7 @@ import Fooddetailpage from "./pages/Fooddetailpage";
 import AdminLogin from "./components/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Blogpage from "./pages/Blogpage";
-
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App: React.FC = () => {
   return (
@@ -19,10 +18,21 @@ const App: React.FC = () => {
         <Route path="/about" element={<Aboutpage />} />
         <Route path="/contactus" element={<Contactpage />} />
         <Route path="/menu" element={<Menupage />} />
+        
+<Route path="/admin/menu" element={<AdminDashboard />} />
+
+
         <Route path="/blog" element={<Blogpage />} />
         <Route path="/food/:id" element={<Fooddetailpage />} />
         <Route path="/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </Router>
   );
