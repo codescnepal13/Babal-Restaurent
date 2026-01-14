@@ -11,10 +11,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout }) 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
-    { id: 'dashboard', icon: '▦', label: 'Dashboard' },
-    { id: 'addMenu', icon: '☰', label: 'Add Menu' },
-    { id: 'addBlog', icon: '📝', label: 'Blog' },
-    { id: 'reservation', icon: '✉', label: 'Reservation' },
+  { id: 'dashboard', icon: '📊', label: 'Dashboard' },
+  { id: 'addMenu', icon: '🍽️', label: 'Add Menu' },
+  { id: 'addCategory', icon: '🗂️', label: 'Add Category' },
+  { id: 'addBlog', icon: '📝', label: 'Blog' },
+  { id: 'reservation', icon: '📅', label: 'Reservation' },
   ];
 
   const handleLogout = () => {

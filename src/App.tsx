@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Route path="/contactus" element={<Contactpage />} />
         <Route path="/menu" element={<Menupage />} />
         
-<Route path="/admin/menu" element={<AdminDashboard />} />
+        <Route path="/admin/menu" element={<AdminDashboard />} />
 
 
         <Route path="/blog" element={<Blogpage />} />

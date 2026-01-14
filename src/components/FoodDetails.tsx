@@ -1,38 +1,76 @@
-import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight, Tag } from 'lucide-react';
 
-interface FoodDetailProps {
-  foodName?: string;
-  foodSubtitle?: string;
-  foodPrice?: string;
-  foodDescription?: string;
-  foodImages?: string[];
-  features?: string[];
-}
+import { useParams, useNavigate } from 'react-router-dom';
+import apiService, { type MenuItem } from '../services/apiService';
 
-const FoodDetail = ({
-  foodName = "Spicy Momo",
-  foodSubtitle = "Chilly",
-  foodPrice = "$12",
-  foodDescription = "At Almado Fado Al Fama, every dish is a note, and every evening tells a story. Inspired by the haunting beauty of Fado Portugal's traditional soul music we blend heartfelt live performances with the warmth of family-style Portuguese dining.",
-  foodImages = ['/menu1.png', '/menu2.png', '/menu1.png'],
-  features = [
-    "Live performances",
-    "Authentic taste",
-    "Fresh ingredients",
-    "Traditional recipe",
-    "Chef special"
-  ]
-}: FoodDetailProps) => {
+const FoodDetail = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [menuItem, setMenuItem] = useState<MenuItem | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchMenuItem = async () => {
+      if (!id) {
+        setError('No item ID provided');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        const response = await apiService.getItemById(id);
+        setMenuItem(response.data);
+        setError(null);
+      } catch (err) {
+        console.error('Error fetching menu item:', err);
+        setError('Failed to load menu item');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenuItem();
+  }, [id]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % foodImages.length);
+    if (menuItem?.images) {
+      setCurrentImageIndex((prev) => (prev + 1) % menuItem.images.length);
+    }
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + foodImages.length) % foodImages.length);
+    if (menuItem?.images) {
+      setCurrentImageIndex((prev) => (prev - 1 + menuItem.images.length) % menuItem.images.length);
+    }
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
+  if (error || !menuItem) {
+    return (
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-white text-xl mb-4">{error || 'Menu item not found'}</div>
+          <button
+            onClick={() => navigate(-1)}
+            className="px-6 py-3 bg-[#E4B951] text-black rounded-lg font-semibold hover:bg-[#d4a941] transition"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black">
@@ -44,12 +82,12 @@ const FoodDetail = ({
             <div className="space-y-3 sm:space-y-4">
               <div className="relative h-[40vh] sm:h-[45vh] md:h-[50vh] lg:h-[55vh] w-full sm:w-[85%] md:w-[80%] lg:w-[70%] mx-auto rounded-lg overflow-hidden bg-zinc-900 shadow-2xl">
                 <img
-                  src={foodImages[currentImageIndex]}
-                  alt={foodName}
+                  src={menuItem.images[currentImageIndex]}
+                  alt={menuItem.name}
                   className="w-full h-full object-cover"
                 />
 
-                {foodImages.length > 1 && (
+                {menuItem.images.length > 1 && (
                   <>
                     <button
                       onClick={prevImage}
@@ -70,9 +108,9 @@ const FoodDetail = ({
                 )}
               </div>
 
-              {foodImages.length > 1 && (
+              {menuItem.images.length > 1 && (
                 <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                  {foodImages.map((image, index) => (
+                  {menuItem.images.map((image, index) => (
                     <div
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
@@ -84,7 +122,7 @@ const FoodDetail = ({
                     >
                       <img
                         src={image}
-                        alt={`${foodName} ${index + 1}`}
+                        alt={`${menuItem.name} ${index + 1}`}
                         className="w-full h-full object-cover"
                       />
                     </div>
@@ -98,39 +136,50 @@ const FoodDetail = ({
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
                   <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-bold leading-tight">
-                    {foodName.split(' ')[0]}{" "}
+                    {menuItem.name.split(' ')[0]}{" "}
                     <span className="font-great-vibes text-[#E4B951]">
-                      {foodName.split(' ').slice(1).join(' ')}
+                      {menuItem.name.split(' ').slice(1).join(' ')}
                     </span>
                   </h2>
-                  <p className="text-zinc-400 text-sm sm:text-base mt-1 sm:mt-2">{foodSubtitle}</p>
+                  {menuItem.subtitle && (
+                    <p className="text-zinc-400 text-sm sm:text-base mt-1 sm:mt-2">
+                      {menuItem.subtitle}
+                    </p>
+                  )}
                 </div>
 
                 <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 rounded-full bg-[#E4B951] flex items-center justify-center border-3 sm:border-4 border-white shadow-lg flex-shrink-0">
                   <span className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold text-black">
-                    {foodPrice}
+                    {menuItem.price}
                   </span>
                 </div>
               </div>
 
               <p className="text-zinc-300 text-sm sm:text-base md:text-lg leading-relaxed max-h-none sm:max-h-[25vh] md:max-h-[22vh] overflow-y-auto pr-2">
-                {foodDescription}
+                {menuItem.description}
               </p>
 
-              <div>
-                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-xl font-semibold mb-2 sm:mb-3 text-[#E4B951]">Features:</h3>
-                <ul className="space-y-1 sm:space-y-2 text-zinc-400 text-sm sm:text-base">
-                  {features.map((feature, index) => (
-                    <li key={index} className="flex gap-2 items-start">
-                      <span className="text-[#E4B951] text-lg sm:text-xl mt-0.5">•</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {menuItem.features && menuItem.features.length > 0 && (
+                <div>
+                  <h3 className="text-lg sm:text-xl md:text-2xl lg:text-xl font-semibold mb-2 sm:mb-3 text-[#E4B951]">
+                    Features:
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {menuItem.features.map((feature, index) => (
+                      <span
+                        key={index}
+                        className="inline-flex items-center gap-2 px-3 py-1.5 bg-zinc-800 text-zinc-300 rounded-full text-sm border border-zinc-700"
+                      >
+                        <Tag size={14} className="text-[#E4B951]" />
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <button
-                onClick={() => window.history.back()}
+                onClick={() => navigate(-1)}
                 className="w-full bg-zinc-800 text-white py-3 sm:py-4 rounded-full hover:bg-[#E4B951] hover:text-black transition-all duration-300 font-medium text-sm sm:text-base shadow-lg"
               >
                 Back to Menu
