@@ -425,7 +425,7 @@
 //   };
 
 //   return (
-//     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 p-8">
+//     <div className="min-h-screen bg-linear-to-br from-amber-50 to-orange-50 p-8">
 //       {alert && (
 //         <Alert
 //           type={alert.type}
@@ -518,7 +518,7 @@ const Alert: React.FC<{ type: 'success' | 'error'; message: string; onClose: () 
 
   return (
     <div className={`fixed top-4 right-4 z-50 max-w-md ${type === 'success' ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200'} border rounded-lg p-4 shadow-lg flex items-start space-x-3`}>
-      <AlertCircle className={`${type === 'success' ? 'text-green-600' : 'text-red-600'} flex-shrink-0`} size={20} />
+      <AlertCircle className={`${type === 'success' ? 'text-green-600' : 'text-red-600'} shrink-0`} size={20} />
       <div className="flex-1">
         <p className={`text-sm font-medium ${type === 'success' ? 'text-green-800' : 'text-red-800'}`}>{message}</p>
       </div>
@@ -551,7 +551,7 @@ const BlogForm: React.FC<{
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center space-x-3">
           <h2 className="text-3xl font-bold text-zinc-800">{editingId ? 'Edit' : 'Add'}</h2>
-          <span className="text-3xl font-bold text-[#E4B951] italic">Blog</span>
+          <span className="text-3xl font-great-vibes font-bold text-[#E4B951] italic">Blog</span>
         </div>
         <div className="flex space-x-3">
           {editingId && (
@@ -696,7 +696,7 @@ const BlogCard: React.FC<{
     <div className="border border-zinc-200 rounded-lg p-6 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between">
         <div className="flex space-x-4 flex-1">
-          <div className="w-32 h-32 bg-zinc-100 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+          <div className="w-32 h-32 bg-zinc-100 rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
             {post.coverImage ? (
               <img src={post.coverImage} alt={post.heading} className="w-full h-full object-cover" />
             ) : (
@@ -896,7 +896,7 @@ const BlogManager: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 p-8">
+    <div className="min-h-screen bg-linear-to-br from-amber-50 to-orange-50 p-8">
       {alert && (
         <Alert
           type={alert.type}

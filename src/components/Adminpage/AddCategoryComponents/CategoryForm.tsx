@@ -36,7 +36,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
           <h2 className="text-3xl font-bold text-zinc-800">
             {editingId ? 'Edit' : 'Add'}
           </h2>
-          <span className="text-3xl font-bold text-[#E4B951] italic">Category</span>
+          <span className="text-3xl font-bold font-great-vibes text-[#E4B951] italic">Category</span>
         </div>
         <div className="flex space-x-3">
           {editingId && (

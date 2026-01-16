@@ -78,7 +78,7 @@ const AddMenu: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 p-8">
+    <div className="min-h-screen bg-linear-to-br from-amber-50 to-orange-50 p-8">
       <div className="max-w-6xl mx-auto space-y-8">
         {showForm && (
           <MenuForm

@@ -9,7 +9,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm">
-      <nav className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+      <nav className="max-w-350 mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
 
           {/* Left links - Desktop */}
@@ -28,12 +28,12 @@ export default function Header() {
               About
             </Link>
 
-            <Link
+            {/* <Link
               to="/blog"
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
             >
               Blog
-            </Link>
+            </Link> */}
           </div>
 
           {/* Logo (CENTER) */}
@@ -49,13 +49,19 @@ export default function Header() {
 
           {/* Right links - Desktop */}
           <div className="hidden lg:flex flex-1 items-center justify-end gap-6 xl:gap-10">
-            <Link 
+            {/* <Link 
               to="/contactus" 
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
             >
               Contact Us
+            </Link> */}
+            <Link
+              to="/blog"
+              className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
+            >
+              Blog
             </Link>
-            
+
             <Link
               to="/menu"
               className="px-6 xl:px-8 py-2.5 border-2 border-white text-white 
@@ -104,13 +110,13 @@ export default function Header() {
                 Blog
               </Link>
               
-              <Link 
+              {/* <Link 
                 to="/contactus" 
                 onClick={closeMenu}
                 className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
               >
                 Contact Us
-              </Link>
+              </Link> */}
               
               <Link
                 to="/menu"

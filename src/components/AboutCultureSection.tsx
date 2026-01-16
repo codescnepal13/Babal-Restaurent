@@ -4,7 +4,7 @@ const AboutCultureSection: React.FC = () => {
   return (
     <section className="relative bg-black py-20 md:py-32 overflow-hidden">
       {/* Banana Leaf Decoration */}
-    <div className="absolute left top-1/4 w-80 md:w-96 lg:w-[500px] h-100 overflow-hidden pointer-events-none">
+    <div className="absolute left top-1/4 w-80 md:w-96 lg:w-125 h-100 overflow-hidden pointer-events-none">
        <img
           src="/herosec3.png"
           alt=""

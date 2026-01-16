@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Calendar, Loader2, AlertCircle, X, ChevronRight } from 'lucide-react';
+import { Calendar, AlertCircle, X, ChevronRight } from 'lucide-react';
 
 const API_BASE_URL = 'http://localhost:3000/api/v1';
 
@@ -59,7 +59,7 @@ const BlogDetailModal: React.FC<{ blog: BlogPost; onClose: () => void }> = ({ bl
               alt={blog.heading}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
           </div>
         )}
 
@@ -96,7 +96,7 @@ const ErrorAlert: React.FC<{ message: string; onRetry: () => void }> = ({ messag
   return (
     <div className="bg-red-900/20 border border-red-800 rounded-lg p-6 max-w-md mx-auto">
       <div className="flex items-start space-x-3">
-        <AlertCircle className="text-red-500 flex-shrink-0 mt-0.5" size={20} />
+        <AlertCircle className="text-red-500 shrink-0 mt-0.5" size={20} />
         <div className="flex-1">
           <p className="text-red-400 text-sm font-medium mb-3">{message}</p>
           <button
@@ -163,7 +163,7 @@ const BlogCard: React.FC<{ blog: BlogPost; onClick: () => void }> = ({ blog, onC
                 e.currentTarget.style.display = 'none';
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-transparent to-transparent opacity-60" />
+            <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-transparent to-transparent opacity-60" />
           </>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
@@ -295,8 +295,8 @@ const BlogDisplay: React.FC = () => {
           <p className="text-[#E4B951] font-semibold text-sm sm:text-base uppercase tracking-wider mb-4 animate-fade-in">
             Our Stories
           </p>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 px-4">
-            Latest <span className="text-[#E4B951] italic font-serif">Blogs</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 px-4">
+            Latest <span className="text-[#E4B951] italic font-great-vibes">Blogs</span>
           </h1>
           <div className="w-20 h-1 bg-[#E4B951] mx-auto mb-6"></div>
           <p className="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto px-4 leading-relaxed">

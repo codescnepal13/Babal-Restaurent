@@ -135,7 +135,7 @@ const FoodDetail = () => {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 mt-6 md:mt-0">
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl font-bold leading-tight">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl  leading-tight">
                     {menuItem.name.split(' ')[0]}{" "}
                     <span className="font-great-vibes text-[#E4B951]">
                       {menuItem.name.split(' ').slice(1).join(' ')}
@@ -148,7 +148,7 @@ const FoodDetail = () => {
                   )}
                 </div>
 
-                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-24 lg:h-24 rounded-full bg-[#E4B951] flex items-center justify-center border-3 sm:border-4 border-white shadow-lg flex-shrink-0">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-26 lg:h-26 rounded-full bg-[#E4B951] flex items-center justify-center border-3 sm:border-4 border-white shadow-lg shrink-0">
                   <span className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-bold text-black">
                     {menuItem.price}
                   </span>

@@ -6,7 +6,7 @@ interface WelcomeCardProps {
 
 const WelcomeCard: React.FC<WelcomeCardProps> = ({ adminName }) => {
   return (
-    <div className="bg-gradient-to-r from-zinc-800 to-zinc-900 rounded-xl p-6 flex items-center justify-between shadow-lg">
+    <div className="bg-linear-to-r from-zinc-800 to-zinc-900 rounded-xl p-6 flex items-center justify-between shadow-lg">
       <div>
         <p className="text-zinc-400 text-sm mb-1">Current Admin</p>
         <h2 className="text-white text-3xl font-bold mb-2">{adminName}</h2>

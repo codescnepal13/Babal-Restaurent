@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout }) 
   { id: 'addMenu', icon: '🍽️', label: 'Add Menu' },
   { id: 'addCategory', icon: '🗂️', label: 'Add Category' },
   { id: 'addBlog', icon: '📝', label: 'Blog' },
-  { id: 'reservation', icon: '📅', label: 'Reservation' },
+  // { id: 'reservation', icon: '📅', label: 'Reservation' },
   ];
 
   const handleLogout = () => {
@@ -57,7 +57,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout }) 
 
       {/* Sidebar */}
       <div className={`
-        w-64 bg-gradient-to-b from-zinc-900 to-black h-screen fixed left-0 top-0 flex flex-col z-40
+        w-64 bg-linear-to-b from-zinc-900 to-black h-screen fixed left-0 top-0 flex flex-col z-40
         transition-transform duration-300 ease-in-out
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>

@@ -3,7 +3,7 @@ import { FileText, FolderTree, Utensils, TrendingUp, BarChart3, PieChart, BookOp
 import apiService, { type Category, type BlogPost } from '../../services/apiService';
 
 const WelcomeCard = ({ adminName }: { adminName: string }) => (
-  <div className="bg-gradient-to-br from-[#E4B951] to-[#d4a941] rounded-xl shadow-lg p-8 text-black">
+  <div className="bg-linear-to-br from-[#E4B951] to-[#d4a941] rounded-xl shadow-lg p-8 text-black">
     <h2 className="text-3xl font-bold mb-2">Welcome back, {adminName}! 👋</h2>
     <p className="text-black/80">Here's what's happening with your restaurant today.</p>
   </div>
@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
           <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="w-16 h-16 bg-linear-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <FolderTree className="text-blue-600" size={32} />
             </div>
             <div className="flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-full">
@@ -113,7 +113,7 @@ const Dashboard: React.FC = () => {
 
         <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
           <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="w-16 h-16 bg-linear-to-br from-yellow-50 to-yellow-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <Utensils className="text-yellow-600" size={32} />
             </div>
             <div className="flex items-center gap-2 px-3 py-1 bg-yellow-50 rounded-full">
@@ -135,7 +135,7 @@ const Dashboard: React.FC = () => {
 
         <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
           <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-[#E4B951]/20 to-[#E4B951]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="w-16 h-16 bg-linear-to-br from-[#E4B951]/20 to-[#E4B951]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <BookOpen className="text-[#E4B951]" size={32} />
             </div>
             <div className="flex items-center gap-2 px-3 py-1 bg-[#E4B951]/10 rounded-full">
@@ -153,7 +153,7 @@ const Dashboard: React.FC = () => {
 
         <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
           <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-50 to-green-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <div className="w-16 h-16 bg-linear-to-br from-green-50 to-green-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
               <Eye className="text-green-600" size={32} />
             </div>
             <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full">
@@ -171,7 +171,7 @@ const Dashboard: React.FC = () => {
 
       {/* Categories Overview Table */}
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-[#E4B951] to-[#d4a941] p-6">
+        <div className="bg-linear-to-r from-[#E4B951] to-[#d4a941] p-6">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-2xl font-bold text-black">Categories Overview</h3>
@@ -207,7 +207,7 @@ const Dashboard: React.FC = () => {
                 {categories.map((category, index) => (
                   <tr 
                     key={category.id} 
-                    className={`border-b border-zinc-100 hover:bg-gradient-to-r hover:from-[#E4B951]/5 hover:to-transparent transition-all duration-200 ${
+                    className={`border-b border-zinc-100 hover:bg-linear-to-r hover:from-[#E4B951]/5 hover:to-transparent transition-all duration-200 ${
                       index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/50'
                     }`}
                   >
@@ -235,7 +235,7 @@ const Dashboard: React.FC = () => {
                       </div>
                     </td>
                     <td className="py-5 px-6 text-center">
-                      <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-[#E4B951] to-[#d4a941] text-black rounded-xl font-bold text-base shadow-md">
+                      <div className="inline-flex items-center gap-2 px-5 py-2.5 bg-linear-to-r from-[#E4B951] to-[#d4a941] text-black rounded-xl font-bold text-base shadow-md">
                         <Utensils size={18} />
                         <span>{category.items?.length || 0}</span>
                         <span className="text-sm font-normal opacity-80">items</span>
@@ -251,7 +251,7 @@ const Dashboard: React.FC = () => {
 
       {/* Blogs Overview Table */}
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="bg-gradient-to-r from-[#E4B951] to-[#d4a941] p-6">
+        <div className="bg-linear-to-r from-[#E4B951] to-[#d4a941] p-6">
           <div className="flex items-center justify-between">
             <div>
               <h3 className="text-2xl font-bold text-black">Recent Blog Posts</h3>
@@ -287,7 +287,7 @@ const Dashboard: React.FC = () => {
                 {blogs.slice(0, 5).map((blog, index) => (
                   <tr 
                     key={blog.id} 
-                    className={`border-b border-zinc-100 hover:bg-gradient-to-r hover:from-[#E4B951]/5 hover:to-transparent transition-all duration-200 ${
+                    className={`border-b border-zinc-100 hover:bg-linear-to-r hover:from-[#E4B951]/5 hover:to-transparent transition-all duration-200 ${
                       index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/50'
                     }`}
                   >
@@ -316,8 +316,8 @@ const Dashboard: React.FC = () => {
                     <td className="py-5 px-6 text-center">
                       <div className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-base shadow-md ${
                         blog.isPublished 
-                          ? 'bg-gradient-to-r from-green-500 to-green-600 text-white'
-                          : 'bg-gradient-to-r from-zinc-300 to-zinc-400 text-zinc-700'
+                          ? 'bg-linear-to-r from-green-500 to-green-600 text-white'
+                          : 'bg-linear-to-r from-zinc-300 to-zinc-400 text-zinc-700'
                       }`}>
                         {blog.isPublished ? <Eye size={18} /> : <BookOpen size={18} />}
                         <span>{blog.isPublished ? 'Published' : 'Draft'}</span>

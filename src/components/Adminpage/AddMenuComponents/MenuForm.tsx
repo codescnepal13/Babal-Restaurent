@@ -54,7 +54,7 @@ const MenuForm: React.FC<MenuFormProps> = ({
           <h2 className="text-3xl font-bold text-zinc-800">
             {editingId ? 'Edit' : 'Add'}
           </h2>
-          <span className="text-3xl font-bold text-[#E4B951] italic">Menu</span>
+          <span className="text-3xl font-great-vibes font-bold text-[#E4B951] italic">Menu</span>
         </div>
         <div className="flex space-x-3">
           {editingId && (
