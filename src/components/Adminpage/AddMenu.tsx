@@ -9,7 +9,7 @@ const AddMenu: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showForm, setShowForm] = useState(true);
+  const [showForm] = useState(true);
 
   const fetchData = async () => {
     try {
