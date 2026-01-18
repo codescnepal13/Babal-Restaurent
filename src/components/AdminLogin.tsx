@@ -22,7 +22,7 @@ export default function AdminLogin() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/v1/auth/login', {
+      const response = await fetch('http://84.247.183.214:3000/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
