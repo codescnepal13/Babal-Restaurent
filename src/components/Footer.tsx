@@ -78,31 +78,31 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/contactus" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
+                  {/* <a href="/contactus" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
                     Contact Us
-                  </a>
+                  </a> */}
                 </li>
               </ul>
             </div>
 
             {/* Contact Info & Social */}
             <div className="text-center sm:text-left">
-              <h3 className="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-[#E4B951]">Contact Us</h3>
+              <h3 className="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-[#E4B951]">Our Info</h3>
               <div className="space-y-2 mb-4">
                 <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
-                  <span className="text-[#E4B951] font-semibold">Phone:</span>
-                  <a href="tel:+9779840202020" className="hover:text-[#E4B951] transition-colors">
-                    +977 984-0202020
+                  <span className="text-[#E4B951] font-semibold">Visit Us:</span>
+                  <a className="hover:text-[#E4B951] transition-colors">
+                    Amsterdam
                   </a>
                 </p>
                 <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
                   <span className="text-[#E4B951] font-semibold">Email:</span>
                   <a href="mailto:info@babalrestaurant.com" className="hover:text-[#E4B951] transition-colors break-all">
-                    info@babalrestaurant.com
+                    hello@babal.nl
                   </a>
                 </p>
                 <p className="text-zinc-300 text-xs sm:text-sm">
-                  <span className="text-[#E4B951] font-semibold">Hours:</span> 10 AM - 10 PM
+                  <span className="text-[#E4B951] font-semibold">Opening Hours:</span> Tuesday-Sunday: 12:00-22:0 <br />Monday: Closed
                 </p>
               </div>
 

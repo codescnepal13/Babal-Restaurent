@@ -8,12 +8,12 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm">
-      <nav className="max-w-350 mx-auto px-4 sm:px-6 lg:px-12">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/30">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
 
           {/* Left links - Desktop */}
-          <div className="hidden lg:flex flex-1 items-center gap-8 xl:gap-10">
+          <div className="hidden lg:flex flex-1 items-center gap-12 xl:gap-16">
             <Link
               to="/"
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
@@ -27,34 +27,21 @@ export default function Header() {
             >
               About
             </Link>
-
-            {/* <Link
-              to="/blog"
-              className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
-            >
-              Blog
-            </Link> */}
           </div>
 
           {/* Logo (CENTER) */}
-          <div className="flex flex-1 justify-center lg:justify-center">
+          <div className="shrink-0">
             <Link to="/" onClick={closeMenu}>
               <img
                 src="/logo.png"
                 alt="Babal Restaurant"
-                className="h-16 sm:h-20 w-auto transition-transform duration-300 hover:scale-105"
+                className="h-14 sm:h-16 lg:h-18 w-auto transition-transform duration-300 hover:scale-105"
               />
             </Link>
           </div>
 
           {/* Right links - Desktop */}
-          <div className="hidden lg:flex flex-1 items-center justify-end gap-6 xl:gap-10">
-            {/* <Link 
-              to="/contactus" 
-              className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
-            >
-              Contact Us
-            </Link> */}
+          <div className="hidden lg:flex flex-1 items-center justify-end gap-12 xl:gap-16">
             <Link
               to="/blog"
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
@@ -66,7 +53,7 @@ export default function Header() {
               to="/menu"
               className="px-6 xl:px-8 py-2.5 border-2 border-white text-white 
                 hover:border-[#E4B951] hover:text-[#E4B951] 
-                rounded-md hover:bg-white/5 transition-all duration-300 font-medium text-base xl:text-lg"
+                rounded-full hover:bg-white/5 transition-all duration-300 font-medium text-base xl:text-lg"
             >
               Menu 
             </Link>
@@ -78,18 +65,18 @@ export default function Header() {
             className="lg:hidden ml-auto p-2 text-white hover:text-[#E4B951] transition-colors duration-300"
             aria-label="Toggle menu"
           >
-            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
         {/* Mobile menu */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-black/95 backdrop-blur-sm border-t border-white/10 rounded-b-lg pb-6 animate-fadeIn">
-            <div className="flex flex-col gap-1 pt-4">
+          <div className="lg:hidden bg-black/95 backdrop-blur-sm border-t border-white/20 rounded-b-lg pb-4 animate-fadeIn">
+            <div className="flex flex-col gap-1 pt-3">
               <Link 
                 to="/" 
                 onClick={closeMenu}
-                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
+                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-2.5 px-4 text-center font-medium text-sm"
               >
                 Home
               </Link>
@@ -97,7 +84,7 @@ export default function Header() {
               <Link 
                 to="/about" 
                 onClick={closeMenu}
-                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
+                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-2.5 px-4 text-center font-medium text-sm"
               >
                 About
               </Link>
@@ -105,23 +92,15 @@ export default function Header() {
               <Link 
                 to="/blog" 
                 onClick={closeMenu}
-                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
+                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-2.5 px-4 text-center font-medium text-sm"
               >
                 Blog
               </Link>
               
-              {/* <Link 
-                to="/contactus" 
-                onClick={closeMenu}
-                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-3 px-6 text-center font-medium"
-              >
-                Contact Us
-              </Link> */}
-              
               <Link
                 to="/menu"
                 onClick={closeMenu}
-                className="border-2 border-white text-white hover:border-[#E4B951] hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 px-8 py-3 rounded-md mx-6 mt-2 text-center font-medium"
+                className="border-2 border-white text-white hover:border-[#E4B951] hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 px-6 py-2.5 rounded-full mx-4 mt-2 text-center font-medium text-sm"
               >
                 Menu
               </Link>

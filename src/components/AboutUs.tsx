@@ -24,28 +24,32 @@ const AboutUs: React.FC = () => {
           </h2>
           
           <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4">
-            <span className="text-[#E4B951] font-inter">Where </span>
-            <span className="font-great-vibes">Food</span>
-            <span className="text-[#E4B951] font-inter"> Meets the </span>
-            <span className="font-great-vibes">Meal</span>
+            <span className="text-[#E4B951] font-inter">Whatever You Do, Make It </span>
+            {/* <span className="font-great-vibes">Food</span>
+            <span className="text-[#E4B951] font-inter"> Meets the </span> */}
+            <span className="font-great-vibes">Babal</span>
           </h1>
           
-          <h1 className="text-3xl md:text-4xl lg:text-5xl">
+          {/* <h1 className="text-3xl md:text-4xl lg:text-5xl">
             <span className="text-[#E4B951] font-inter">& the </span>
             <span className="font-great-vibes">Heart</span>
             <span className="text-[#E4B951] font-inter"> Finds a </span>
             <span className="font-great-vibes">Home</span>
-          </h1>
+          </h1> */}
         </div>
 
         {/* Description */}
         <p className="text-center text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed text-sm md:text-base">
-          At Almado Fado Alfama, we're more than a restaurant — we're a living tribute to the soul of Portugal. Nestled in the 
-          cobbled alleys of Alfama, Lisbon's oldest and most soulful neighborhood, our space celebrates Fado, Portugal's 
-          traditional music of longing, love, and life.At Almado Fado Alfama, we're more than a restaurant — we're a living tribute 
-          to the soul of Portugal. Nestled in the cobbled alleys of Alfama, Lisbon's oldest and most soulful neighborhood, our 
-          space celebrates Fado, Portugal's traditional music of longing, love, and life.
+         In Nepali slang, "Babal" means awesome, extraordinary, or simply the best. That is the energy we bring to Amsterdam.
+         We are not just a restaurant; we are a culinary journey to the Himalayas. Whether you are looking for the comforting warmth of a traditional Dal Bhat or the rich, creamy texture of a North Indian curry, we serve it with passion and authenticity.
         </p>
+         
+
+        <div className="text-center text-3xl md:text-4xl lg:text-5xl mb-12">
+         <h1 className="text-[#E4B951] font-inter">
+          Come for the food, stay for the vibe.
+         </h1>
+        </div>
 
         {/* Image Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
