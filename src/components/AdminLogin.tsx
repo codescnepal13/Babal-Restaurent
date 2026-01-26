@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('');
@@ -78,11 +79,13 @@ export default function AdminLogin() {
         <div className="flex justify-center mb-6">
           <div className="relative">
             <div className="w-32 h-32 flex items-center justify-center">
+              <Link to="/">
               <img 
                 src="/logo.png" 
                 alt="Restaurant Logo"
                 className="w-full h-full object-contain"
               />
+              </Link>
             </div>
           </div>
         </div>

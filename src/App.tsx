@@ -9,10 +9,12 @@ import AdminLogin from "./components/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import Blogpage from "./pages/Blogpage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ScrollToTop from "./components/ScrollToTop";
 
 const App: React.FC = () => {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<Aboutpage />} />
