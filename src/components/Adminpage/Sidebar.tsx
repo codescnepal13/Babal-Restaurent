@@ -15,14 +15,11 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout }) 
   { id: 'addMenu', icon: '🍽️', label: 'Add Menu' },
   { id: 'addCategory', icon: '🗂️', label: 'Add Category' },
   { id: 'addBlog', icon: '📝', label: 'Blog' },
-  // { id: 'reservation', icon: '📅', label: 'Reservation' },
+  { id: 'reservation', icon: '📅', label: 'Reservation' },
   ];
 
   const handleLogout = () => {
-    // if (confirm('Are you sure you want to log out?')) {
-    //   localStorage.removeItem("user");
-      
-      // Call the onLogout prop if provided, otherwise navigate directly
+
       if (onLogout) {
         onLogout();
       } else {

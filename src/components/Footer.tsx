@@ -78,9 +78,9 @@ const Footer: React.FC = () => {
                   </a>
                 </li>
                 <li>
-                  {/* <a href="/contactus" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
-                    Contact Us
-                  </a> */}
+                  <a href="/reservation" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
+                    Reservation
+                  </a>
                 </li>
               </ul>
             </div>

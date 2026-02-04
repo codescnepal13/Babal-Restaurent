@@ -1,4 +1,9 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
+
+// Log warning if environment variable is not set
+if (!import.meta.env.VITE_API_BASE_URL) {
+  console.warn('VITE_API_BASE_URL is not set. Using default:', API_BASE_URL);
+}
 
 interface ApiResponse<T> {
   status: string;
@@ -39,6 +44,51 @@ interface BlogPost {
   isPublished: boolean;
   createdAt?: string;
   updatedAt?: string;
+}
+
+interface Reservation {
+  id: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  guests: number;
+  date: string;
+  time: string;
+  message?: string;
+  isArchived: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ReservationAvailability {
+  date: string;
+  isBookingOpen: boolean;
+  bookedTimes: string[];
+  reservations: Array<{
+    id: string;
+    fullName: string;
+    email: string;
+    phone: string;
+    guests: number;
+    date: string;
+    message?: string;
+    time: string;
+  }>;
+}
+
+interface ReservationSettings {
+  id: string;
+  isBookingOpen: boolean;
+}
+
+interface TodayReservations {
+  date: string;
+  reservations: Reservation[];
+}
+
+interface ArchiveResult {
+  archivedCount: number;
+  beforeDate: string;
 }
 
 interface CreateCategoryDto {
@@ -89,6 +139,20 @@ interface UpdateBlogDto {
   isPublished?: boolean;
 }
 
+interface CreateReservationDto {
+  fullName: string;
+  email: string;
+  phone: string;
+  guests: number;
+  date: string;
+  time: string;
+  message?: string;
+}
+
+interface UpdateReservationSettingsDto {
+  isBookingOpen: boolean;
+}
+
 class ApiService {
   private baseUrl: string;
 
@@ -102,6 +166,8 @@ class ApiService {
   ): Promise<ApiResponse<T>> {
     const url = `${this.baseUrl}${endpoint}`;
     
+    console.log(`🌐 API Request: ${options.method || 'GET'} ${url}`);
+    
     try {
       const response = await fetch(url, {
         ...options,
@@ -111,13 +177,28 @@ class ApiService {
         },
       });
 
+      console.log(`📡 API Response: ${response.status} ${response.statusText}`);
+
       if (!response.ok) {
-        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+        // Try to get error details from response body
+        let errorMessage = `API Error: ${response.status} ${response.statusText}`;
+        try {
+          const errorData = await response.json();
+          console.error('❌ Error details:', errorData);
+          errorMessage = errorData.message || errorMessage;
+        } catch (e) {
+          // If response is not JSON, try to get text
+          const errorText = await response.text();
+          console.error('❌ Error response:', errorText);
+        }
+        throw new Error(errorMessage);
       }
 
-      return await response.json();
+      const data = await response.json();
+      console.log('✅ API Success:', data);
+      return data;
     } catch (error) {
-      console.error('API Request failed:', error);
+      console.error('💥 API Request failed:', error);
       throw error;
     }
   }
@@ -219,6 +300,44 @@ class ApiService {
       method: 'DELETE',
     });
   }
+
+  // Reservation APIs
+  async createReservation(data: CreateReservationDto): Promise<ApiResponse<Reservation>> {
+    return this.request<Reservation>('/reservations', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getReservationAvailability(date: string): Promise<ApiResponse<ReservationAvailability>> {
+    return this.request<ReservationAvailability>(
+      `/reservations/availability?date=${date}`
+    );
+  }
+
+  async getReservationSettings(): Promise<ApiResponse<ReservationSettings>> {
+    return this.request<ReservationSettings>('/reservations/settings');
+  }
+
+  // Admin Reservation APIs
+  async getTodayReservations(): Promise<ApiResponse<TodayReservations>> {
+    return this.request<TodayReservations>('/reservations/admin/today');
+  }
+
+  async updateReservationSettings(
+    data: UpdateReservationSettingsDto
+  ): Promise<ApiResponse<ReservationSettings>> {
+    return this.request<ReservationSettings>('/reservations/admin/booking', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+  }
+
+  async archivePreviousReservations(): Promise<ApiResponse<ArchiveResult>> {
+    return this.request<ArchiveResult>('/reservations/admin/archive-previous', {
+      method: 'POST',
+    });
+  }
 }
 
 // Helper function to convert file to base64
@@ -243,12 +362,19 @@ export type {
   Category,
   MenuItem,
   BlogPost,
+  Reservation,
+  ReservationAvailability,
+  ReservationSettings,
+  TodayReservations,
+  ArchiveResult,
   CreateCategoryDto,
   UpdateCategoryDto,
   CreateItemDto,
   UpdateItemDto,
   CreateBlogDto,
   UpdateBlogDto,
+  CreateReservationDto,
+  UpdateReservationSettingsDto,
 };
 
 // Also export as default for easier importing

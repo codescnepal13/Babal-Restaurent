@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, FolderTree, Utensils, TrendingUp, BarChart3, PieChart, BookOpen, Eye } from 'lucide-react';
-import apiService, { type Category, type BlogPost } from '../../services/apiService';
+import { FolderTree, Utensils, TrendingUp, BarChart3, BookOpen, Eye, Calendar, Users, Clock, CheckCircle2, XCircle } from 'lucide-react';
+import apiService, { type Category, type BlogPost, type Reservation } from '../../services/apiService';
 
 const WelcomeCard = ({ adminName }: { adminName: string }) => (
   <div className="bg-linear-to-br from-[#E4B951] to-[#d4a941] rounded-xl shadow-lg p-8 text-black">
@@ -9,28 +9,53 @@ const WelcomeCard = ({ adminName }: { adminName: string }) => (
   </div>
 );
 
-const StatsCard = ({ title, value, icon }: { title: string; value: number; icon: React.ReactNode }) => (
-  <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-100">
-    <div className="flex items-center justify-between">
-      <div>
-        <p className="text-zinc-500 text-sm font-semibold mb-1">{title}</p>
-        <p className="text-4xl font-bold text-zinc-800">{value}</p>
+const StatsCard = ({ title, value, icon, subtitle, trend }: { 
+  title: string; 
+  value: number | string; 
+  icon: React.ReactNode; 
+  subtitle?: string;
+  trend?: 'up' | 'down' | 'neutral';
+}) => (
+  <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-100 hover:shadow-xl transition-all duration-300 group">
+    <div className="flex items-start justify-between mb-4">
+      <div className="w-14 h-14 bg-linear-to-br from-[#E4B951]/20 to-[#E4B951]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+        <div className="text-[#E4B951]">{icon}</div>
       </div>
-      <div className="text-[#E4B951]">{icon}</div>
+      {trend && (
+        <div className={`flex items-center gap-1 px-3 py-1 rounded-full ${
+          trend === 'up' ? 'bg-green-50 text-green-600' : 
+          trend === 'down' ? 'bg-red-50 text-red-600' : 
+          'bg-blue-50 text-blue-600'
+        }`}>
+          <TrendingUp size={14} className={trend === 'down' ? 'rotate-180' : ''} />
+          <span className="text-xs font-semibold">{trend === 'up' ? 'Active' : trend === 'down' ? 'Low' : 'Stable'}</span>
+        </div>
+      )}
     </div>
+    <h3 className="text-zinc-500 text-xs font-semibold mb-2 uppercase tracking-wider">{title}</h3>
+    <p className="text-4xl font-bold text-zinc-800 mb-2">{value}</p>
+    {subtitle && (
+      <div className="flex items-center gap-2 text-sm text-zinc-500">
+        <BarChart3 size={14} />
+        <span>{subtitle}</span>
+      </div>
+    )}
   </div>
 );
 
 const Dashboard: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [todayReservations, setTodayReservations] = useState<Reservation[]>([]);
   const [loading, setLoading] = useState(true);
   const [adminName, setAdminName] = useState('Admin');
+  const [isBookingOpen, setIsBookingOpen] = useState(true);
   const [stats, setStats] = useState({
     totalCategories: 0,
     totalItems: 0,
     totalBlogs: 0,
-    publishedBlogs: 0
+    todayReservations: 0,
+    totalGuests: 0
   });
 
   useEffect(() => {
@@ -45,28 +70,41 @@ const Dashboard: React.FC = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const [categoriesResponse, blogsResponse] = await Promise.all([
+      const [categoriesResponse, blogsResponse, reservationsResponse, settingsResponse] = await Promise.all([
         apiService.getCategories(true),
-        apiService.getBlogs()
+        apiService.getBlogs(),
+        apiService.getTodayReservations().catch(() => ({ data: { reservations: [] } })),
+        apiService.getReservationSettings().catch(() => ({ data: { isBookingOpen: true } }))
       ]);
       
       setCategories(categoriesResponse.data);
       setBlogs(blogsResponse.data);
+      setTodayReservations(reservationsResponse.data.reservations || []);
+      setIsBookingOpen(settingsResponse.data.isBookingOpen);
       
       const totalItems = categoriesResponse.data.reduce((acc, cat) => acc + (cat.items?.length || 0), 0);
-      const publishedBlogs = blogsResponse.data.filter(blog => blog.isPublished).length;
+      const totalGuests = (reservationsResponse.data.reservations || []).reduce((acc, res) => acc + res.guests, 0);
       
       setStats({
         totalCategories: categoriesResponse.data.filter(cat => cat.isActive).length,
         totalItems,
         totalBlogs: blogsResponse.data.length,
-        publishedBlogs
+        todayReservations: reservationsResponse.data.reservations?.length || 0,
+        totalGuests
       });
     } catch (error) {
       console.error('Failed to fetch data:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const formatTime = (time: string) => {
+    const [hours, minutes] = time.split(':');
+    const hour = parseInt(hours);
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour;
+    return `${displayHour}:${minutes} ${period}`;
   };
 
   if (loading) {
@@ -84,90 +122,158 @@ const Dashboard: React.FC = () => {
         <div className="md:col-span-2">
           <WelcomeCard adminName={adminName} />
         </div>
+        <div className="bg-white rounded-xl shadow-lg p-6 border border-zinc-100">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <p className="text-zinc-500 text-sm font-semibold mb-1">Booking Status</p>
+              <p className="text-2xl font-bold text-zinc-800">
+                {isBookingOpen ? 'Open' : 'Closed'}
+              </p>
+            </div>
+            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
+              isBookingOpen ? 'bg-green-100' : 'bg-red-100'
+            }`}>
+              {isBookingOpen ? (
+                <CheckCircle2 className="w-6 h-6 text-green-600" />
+              ) : (
+                <XCircle className="w-6 h-6 text-red-600" />
+              )}
+            </div>
+          </div>
+          <p className="text-xs text-zinc-500">
+            {isBookingOpen ? 'Currently accepting reservations' : 'Reservations are closed'}
+          </p>
+        </div>
+      </div>
+
+      {/* Main Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
         <StatsCard 
-          title="Total Items" 
+          title="Categories" 
+          value={stats.totalCategories} 
+          icon={<FolderTree className="w-7 h-7" />}
+          subtitle="Active categories"
+          trend="up"
+        />
+        <StatsCard 
+          title="Menu Items" 
           value={stats.totalItems} 
-          icon={<FileText className="w-8 h-8" />} 
+          icon={<Utensils className="w-7 h-7" />}
+          subtitle={`${stats.totalCategories > 0 ? Math.round(stats.totalItems / stats.totalCategories) : 0} per category`}
+          trend="up"
+        />
+        <StatsCard 
+          title="Blog Posts" 
+          value={stats.totalBlogs} 
+          icon={<BookOpen className="w-7 h-7" />}
+          subtitle="Published content"
+          trend={stats.totalBlogs > 0 ? 'up' : 'neutral'}
+        />
+        <StatsCard 
+          title="Today's Bookings" 
+          value={stats.todayReservations} 
+          icon={<Calendar className="w-7 h-7" />}
+          subtitle="Reservations"
+          trend={stats.todayReservations > 0 ? 'up' : 'neutral'}
+        />
+        <StatsCard 
+          title="Total Guests" 
+          value={stats.totalGuests} 
+          icon={<Users className="w-7 h-7" />}
+          subtitle="Expected today"
+          trend={stats.totalGuests > 0 ? 'up' : 'neutral'}
         />
       </div>
 
-      {/* Stats Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
-          <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-linear-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <FolderTree className="text-blue-600" size={32} />
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1 bg-blue-50 rounded-full">
-              <TrendingUp className="text-blue-600" size={16} />
-              <span className="text-xs font-semibold text-blue-600">Active</span>
+      {/* Today's Reservations */}
+      {stats.todayReservations > 0 && (
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-linear-to-r from-[#E4B951] to-[#d4a941] p-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-bold text-black">Today's Reservations</h3>
+                <p className="text-black/80 text-sm mt-1">
+                  {stats.todayReservations} reservation{stats.todayReservations !== 1 ? 's' : ''} · {stats.totalGuests} guest{stats.totalGuests !== 1 ? 's' : ''} expected
+                </p>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 bg-black/20 rounded-lg">
+                <Calendar className="w-5 h-5 text-black" />
+                <span className="text-black font-semibold">
+                  {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </span>
+              </div>
             </div>
           </div>
-          <h3 className="text-zinc-500 text-sm font-semibold mb-2 uppercase tracking-wider">Total Categories</h3>
-          <p className="text-5xl font-bold text-zinc-800 mb-4">{stats.totalCategories}</p>
-          <div className="flex items-center gap-2 text-sm text-zinc-500">
-            <BarChart3 size={16} />
-            <span>Menu categories</span>
-          </div>
-        </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
-          <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-linear-to-br from-yellow-50 to-yellow-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Utensils className="text-yellow-600" size={32} />
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1 bg-yellow-50 rounded-full">
-              <PieChart className="text-yellow-600" size={16} />
-              <span className="text-xs font-semibold text-yellow-600">Total</span>
-            </div>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-zinc-50 border-b-2 border-zinc-200">
+                  <th className="text-left py-4 px-6 text-sm font-bold text-zinc-700 uppercase tracking-wider">Guest</th>
+                  <th className="text-left py-4 px-6 text-sm font-bold text-zinc-700 uppercase tracking-wider">Contact</th>
+                  <th className="text-center py-4 px-6 text-sm font-bold text-zinc-700 uppercase tracking-wider">Time</th>
+                  <th className="text-center py-4 px-6 text-sm font-bold text-zinc-700 uppercase tracking-wider">Party Size</th>
+                  <th className="text-left py-4 px-6 text-sm font-bold text-zinc-700 uppercase tracking-wider">Special Request</th>
+                </tr>
+              </thead>
+              <tbody>
+                {todayReservations.slice(0, 5).map((reservation, index) => (
+                  <tr 
+                    key={reservation.id} 
+                    className={`border-b border-zinc-100 hover:bg-linear-to-r hover:from-[#E4B951]/5 hover:to-transparent transition-all duration-200 ${
+                      index % 2 === 0 ? 'bg-white' : 'bg-zinc-50/50'
+                    }`}
+                  >
+                    <td className="py-4 px-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-linear-to-br from-[#E4B951] to-[#d4a941] rounded-full flex items-center justify-center text-white font-bold">
+                          {reservation.fullName.charAt(0).toUpperCase()}
+                        </div>
+                        <div>
+                          <p className="font-bold text-zinc-800">{reservation.fullName}</p>
+                          <p className="text-xs text-zinc-500">{reservation.email}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6">
+                      <p className="text-sm text-zinc-600">{reservation.phone}</p>
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[#E4B951]/10 text-[#E4B951] rounded-lg font-semibold">
+                        <Clock size={14} />
+                        <span>{formatTime(reservation.time)}</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6 text-center">
+                      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg font-semibold">
+                        <Users size={14} />
+                        <span>{reservation.guests}</span>
+                      </div>
+                    </td>
+                    <td className="py-4 px-6">
+                      {reservation.message ? (
+                        <p className="text-sm text-zinc-600 line-clamp-2 max-w-xs" title={reservation.message}>
+                          {reservation.message}
+                        </p>
+                      ) : (
+                        <p className="text-sm text-zinc-400 italic">No special requests</p>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <h3 className="text-zinc-500 text-sm font-semibold mb-2 uppercase tracking-wider">Menu Items</h3>
-          <p className="text-5xl font-bold text-zinc-800 mb-4">{stats.totalItems}</p>
-          <div className="flex items-center gap-2 text-sm text-zinc-500">
-            <BarChart3 size={16} />
-            <span>
-              {stats.totalCategories > 0 
-                ? `Avg ${Math.round(stats.totalItems / stats.totalCategories)} per category`
-                : 'No categories'}
-            </span>
-          </div>
-        </div>
 
-        <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
-          <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-linear-to-br from-[#E4B951]/20 to-[#E4B951]/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <BookOpen className="text-[#E4B951]" size={32} />
+          {todayReservations.length > 5 && (
+            <div className="bg-zinc-50 px-6 py-4 text-center border-t border-zinc-200">
+              <p className="text-sm text-zinc-600">
+                Showing 5 of {todayReservations.length} reservations for today
+              </p>
             </div>
-            <div className="flex items-center gap-2 px-3 py-1 bg-[#E4B951]/10 rounded-full">
-              <TrendingUp className="text-[#E4B951]" size={16} />
-              <span className="text-xs font-semibold text-[#E4B951]">Content</span>
-            </div>
-          </div>
-          <h3 className="text-zinc-500 text-sm font-semibold mb-2 uppercase tracking-wider">Total Blogs</h3>
-          <p className="text-5xl font-bold text-zinc-800 mb-4">{stats.totalBlogs}</p>
-          <div className="flex items-center gap-2 text-sm text-zinc-500">
-            <BarChart3 size={16} />
-            <span>Blog posts created</span>
-          </div>
+          )}
         </div>
-
-        <div className="bg-white rounded-xl shadow-lg p-8 border border-zinc-100 hover:shadow-2xl transition-all duration-300 group">
-          <div className="flex items-start justify-between mb-6">
-            <div className="w-16 h-16 bg-linear-to-br from-green-50 to-green-100 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-              <Eye className="text-green-600" size={32} />
-            </div>
-            <div className="flex items-center gap-2 px-3 py-1 bg-green-50 rounded-full">
-              <span className="text-xs font-semibold text-green-600">Live</span>
-            </div>
-          </div>
-          <h3 className="text-zinc-500 text-sm font-semibold mb-2 uppercase tracking-wider">Published Blogs</h3>
-          <p className="text-5xl font-bold text-zinc-800 mb-4">{stats.publishedBlogs}</p>
-          <div className="flex items-center gap-2 text-sm text-zinc-500">
-            <BarChart3 size={16} />
-            <span>Currently visible</span>
-          </div>
-        </div>
-      </div>
+      )}
 
       {/* Categories Overview Table */}
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">

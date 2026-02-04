@@ -8,7 +8,7 @@ export default function Header() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-sm border-b border-white/30">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-black/30 backdrop-blur-sm border-b border-white/30">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
         <div className="flex items-center justify-between h-20 sm:h-24">
 
@@ -26,6 +26,13 @@ export default function Header() {
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
             >
               About
+            </Link>
+
+            <Link
+              to="/reservation"
+              className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
+            >
+              Reservation
             </Link>
           </div>
 
@@ -87,6 +94,15 @@ export default function Header() {
                 className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-2.5 px-4 text-center font-medium text-sm"
               >
                 About
+              </Link>
+
+
+              <Link 
+                to="/reservation" 
+                onClick={closeMenu}
+                className="text-white hover:text-[#E4B951] hover:bg-white/5 transition-all duration-300 py-2.5 px-4 text-center font-medium text-sm"
+              >
+                Reservation
               </Link>
 
               <Link 

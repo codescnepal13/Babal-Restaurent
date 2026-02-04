@@ -3,7 +3,7 @@ import Footer from '../components/Footer';
 import ContactUsHeroSec from '../components/Herosection/ContactUsHeroSec';
 import ReservationForm from '../components/ReservationForm';
 
-const Contactpage = () => {
+const Reservationpage = () => {
   return (
     <div>
       <Header />
@@ -14,4 +14,4 @@ const Contactpage = () => {
   )
 }
 
-export default Contactpage
+export default Reservationpage
