@@ -13,7 +13,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-20 sm:h-24">
 
           {/* Left links - Desktop */}
-          <div className="hidden lg:flex flex-1 items-center gap-12 xl:gap-16">
+          <div className="hidden lg:flex flex-1 items-center gap-12 xl:gap-24">
             <Link
               to="/"
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"
@@ -48,7 +48,7 @@ export default function Header() {
           </div>
 
           {/* Right links - Desktop */}
-          <div className="hidden lg:flex flex-1 items-center justify-end gap-12 xl:gap-16">
+          <div className="hidden lg:flex flex-1 items-center justify-end gap-12 xl:gap-24">
             <Link
               to="/blog"
               className="text-white hover:text-[#E4B951] transition-colors duration-300 font-medium text-base xl:text-lg"

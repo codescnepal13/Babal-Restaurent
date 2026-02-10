@@ -19,29 +19,17 @@ const AboutUs: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-3xl font-amber font-bold tracking-wider mb-6">
-            About Us
-          </h2>
           
           <h1 className="text-3xl md:text-4xl lg:text-5xl mb-4">
-            <span className="text-[#E4B951] font-inter">Whatever You Do, Make It </span>
-            {/* <span className="font-great-vibes">Food</span>
-            <span className="text-[#E4B951] font-inter"> Meets the </span> */}
-            <span className="font-great-vibes">Babal</span>
+            <span className="text-[#E4B951] font-inter">Our </span>
+            <span className="font-great-vibes">Story</span>
           </h1>
-          
-          {/* <h1 className="text-3xl md:text-4xl lg:text-5xl">
-            <span className="text-[#E4B951] font-inter">& the </span>
-            <span className="font-great-vibes">Heart</span>
-            <span className="text-[#E4B951] font-inter"> Finds a </span>
-            <span className="font-great-vibes">Home</span>
-          </h1> */}
         </div>
 
         {/* Description */}
-        <p className="text-center text-gray-300 max-w-4xl mx-auto mb-12 leading-relaxed text-sm md:text-base">
-         In Nepali slang, "Babal" means awesome, extraordinary, or simply the best. That is the energy we bring to Amsterdam.
-         We are not just a restaurant; we are a culinary journey to the Himalayas. Whether you are looking for the comforting warmth of a traditional Dal Bhat or the rich, creamy texture of a North Indian curry, we serve it with passion and authenticity.
+        <p className="text-center max-w-4xl mx-auto mb-12 leading-relaxed text-sm md:text-base">
+        Amsterdam is a city of bridges, and at Babal, we've built one that stretches 7,000 kilometers—from the bustling gallis of Kathmandu to the iconic canals of the Dam.
+We didn't just want to open another restaurant; we wanted to create a portal. Babal was born from a simple longing for the honest, soul-warming flavors of home. We missed the sizzle of a fresh plate of momos, the earthy depth of slow-cooked dal, and the vibrant kick of a Himalayan tomato chutney. So, we decided to bring the "Babal" (meaning extraordinary or mind-blowing in Nepali) experience to Amsterdam.
         </p>
          
 
@@ -68,8 +56,8 @@ const AboutUs: React.FC = () => {
         </div>
     </div>
 
-          {/* Indian Culture Section */}
-      <div className="max-w-7xl mx-auto mt-20 md:mt-32">
+          {/* The Flavor of Babal Section */}
+      <div className="max-w-5xl mx-auto mt-20 md:mt-32">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Image */}
           <div className="order-2 md:order-1">
@@ -84,28 +72,17 @@ const AboutUs: React.FC = () => {
 
           {/* Content */}
           <div className="order-1 md:order-2">
-            <h3 className="font-great-vibes text-right text-2xl justify-end md:text-3xl  mb-4">
-              The Taste of Port
+            <h3 className="font-great-vibes text-right text-2xl justify-end md:text-3xl lg:text-5xl  mb-4">
+              <span className="text-[#E4B951]">The </span>
+              Flavor of 
+              <span className="text-[#E4B951]"> Babal</span>
             </h3>
-            <h2 className="text-3xl md:text-4xl text-right lg:text-5xl text-[#E4B951] font-inter mb-8">
-              Indian Culture
-            </h2>
-            <div className="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed">
+            <div className="space-y-4 text-right text-sm md:text-base leading-relaxed">
               <p>
-                At Almado Fado Al Fama, every dish is a note, and every evening tells a story. 
-                Inspired by the haunting beauty of Fado Portugal's traditional soul music we blend 
-                heartfelt live performances with the warmth of family-style Portuguese dining. 
-                Set in the heart of Alfama, Lisbon's oldest district, our candlelit space invites you to 
-                savor the flavors of bacalhau, pastéis de nata, and fine wines while being serenaded 
-                by the voice of a fadista and the gentle strum of the guitarra portuguesa.At Almado 
-                Fado Al Fama, every dish is a note, and every evening tells a story.
+               Nepali cuisine is a tapestry of cultures, altitudes, and spices. It's food that is meant to be shared and stories that are meant to be told. Our kitchen stays true to traditional roots while embracing the fresh, high-quality ingredients available right here in the Netherlands.
               </p>
               <p>
-                Inspired by the haunting beauty of Fado Portugal's traditional soul music we blend 
-                heartfelt live performances with the warmth of family-style Portuguese dining. 
-                Set in the heart of Alfama, Lisbon's oldest district, our candlelit space invites you to 
-                savor the flavors of bacalhau, pastéis de nata, and fine wines while being serenaded 
-                by the voice of a fadista and the gentle strum of the guitarra portuguesa.
+              Whether you're a spice-seeker or a comfort-food lover, our menu is a curated journey through the hills and valleys of Nepal. No shortcuts, no compromises—just authentic Himalayan soul food.
               </p>
               
             </div>
@@ -113,33 +90,22 @@ const AboutUs: React.FC = () => {
           
         </div>
 
-        {/* Nepali Culture Section */}
+        {/* Why We're Here Section */}
       <div className="max-w-7xl mx-auto mt-20 md:mt-32">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
           
           <div className="order-1">
-            <h3 className="font-great-vibes text-2xl md:text-3xl mb-4">
-              The Essence of Himalayas
+            <h3 className="font-great-vibes text-2xl md:text-3xl lg:text-5xl mb-4">
+               <span className="text-[#E4B951]">Why </span>
+              We're
+              <span className="text-[#E4B951]"> Here</span>
             </h3>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#E4B951] font-inter mb-8">
-              Nepali Culture
-            </h2>
-            <div className="space-y-4 text-gray-300 text-sm md:text-base leading-relaxed">
+            <div className="space-y-4 text-sm md:text-base leading-relaxed">
               <p>
-                At Almado Fado Al Fama, every dish is a note, and every evening tells a story. 
-                Inspired by the haunting beauty of Fado Portugal's traditional soul music we blend 
-                heartfelt live performances with the warmth of family-style Portuguese dining. 
-                Set in the heart of Alfama, Lisbon's oldest district, our candlelit space invites you to 
-                savor the flavors of bacalhau, pastéis de nata, and fine wines while being serenaded 
-                by the voice of a fadista and the gentle strum of the guitarra portuguesa.At Almado 
-                Fado Al Fama, every dish is a note, and every evening tells a story.
+               At Babal, our philosophy is simple: Atithi Devo Bhava—The Guest is God. We've designed our space to be your home away from home. It's a place where the mountain chill meets the cozy Dutch gezelligheid.
               </p>
               <p>
-                Inspired by the haunting beauty of Fado Portugal's traditional soul music we blend 
-                heartfelt live performances with the warmth of family-style Portuguese dining. 
-                Set in the heart of Alfama, Lisbon's oldest district, our candlelit space invites you to 
-                savor the flavors of bacalhau, pastéis de nata, and fine wines while being serenaded 
-                by the voice of a fadista and the gentle strum of the guitarra portuguesa.
+              Whether you're stopping by for a quick lunch, a festive dinner with friends, or your very first taste of a buffalo momo, we're here to make sure your experience is nothing short of... well, Babal.
               </p>
             </div>
           </div>

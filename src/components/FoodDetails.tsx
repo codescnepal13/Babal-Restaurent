@@ -178,9 +178,9 @@ const FoodDetail = () => {
                 </div>
               )}
 
-              <button
+              <button 
                 onClick={() => navigate(-1)}
-                className="w-full bg-zinc-800 text-white py-3 sm:py-4 rounded-full hover:bg-[#E4B951] hover:text-black transition-all duration-300 font-medium text-sm sm:text-base shadow-lg"
+                className="w-full bg-zinc-800 text-white py-3 sm:py-4 rounded-full hover:bg-[#E4B951] hover:text-black transition-all duration-300 font-medium text-sm sm:text-base shadow-lg mb-10"
               >
                 Back to Menu
               </button>

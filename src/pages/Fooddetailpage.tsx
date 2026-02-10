@@ -2,7 +2,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ItemDesHeroSec from "../components/Herosection/ItemDesHeroSec";
 import FoodDetail from "../components/FoodDetails";
-import PopularCuisineSection from "../components/PopularCuisine";
 
 
 
@@ -13,7 +12,7 @@ const Fooddetailpage = () => {
       <Header />
       <ItemDesHeroSec />
       <FoodDetail />
-      <PopularCuisineSection />
+      
       <Footer />
     </div>
   )
