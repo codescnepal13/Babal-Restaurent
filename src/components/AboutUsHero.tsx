@@ -29,11 +29,11 @@ const AboutUsHero: React.FC = () => {
                 In Nepali slang, "Babal" means awesome, extraordinary, or simply the best. That is the energy we bring to Amsterdam.
               </p>
               <p className="text-sm sm:text-base lg:text-lg leading-relaxed">
-                We are not just a restaurant; we are a culinary journey to the Himalayas. Whether you are looking for the comforting warmth of a traditional Dal Bhat or the rich, creamy texture of a North Indian curry, we serve it with passion and authenticity.
+                We are not just a restaurant; we are a culinary journey to the Himalayas. Whether you are looking for the comforting warmth of a traditional Dal Bhat or the rich, creamy texture of a curry, we serve it with passion and authenticity.
               </p>
             </div>
 
-            <p className="text-base sm:text-lg lg:text-xl font-medium">
+            <p className="font-inter text-base sm:text-lg lg:text-2xl font-medium">
               Come for the food, stay for the vibe.
             </p>
 

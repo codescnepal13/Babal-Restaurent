@@ -3,7 +3,7 @@ export default function AboutUsHeroSec() {
     <section className="relative bg-black overflow-visible">
    
       {/* Background image of the restaurant interior */}
-      <div className="relative overflow-hidden h-[350px] sm:h-[400px] md:h-[400px]">
+      <div className="relative overflow-hidden h-87.5 sm:h-100 md:h-100">
         <img
           src="/aboutusherosec.jpg"
           alt="Restaurant Interior"
