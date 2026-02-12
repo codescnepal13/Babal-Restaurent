@@ -22,17 +22,22 @@ export default function AdminLogin() {
 
     setIsLoading(true);
 
+    
     try {
-      const response = await fetch('http://84.247.183.214:3000/api/v1/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
+  const response = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/auth/login`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        password,
+      }),
+    }
+  );
+
 
       const data = await response.json();
 
