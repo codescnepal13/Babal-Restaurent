@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -11,7 +11,6 @@ const Footer: React.FC = () => {
         className="absolute top-0 left-0 w-full h-12 sm:h-14 md:h-16 -translate-y-full pointer-events-none"
         aria-hidden="true"
       >
-        {/* Glow effect definition */}
         <defs>
           <filter id="softGlow">
             <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
@@ -43,11 +42,11 @@ const Footer: React.FC = () => {
       <div className="relative bg-[#202020]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-3 md:pt-4 pb-4 sm:pb-6 relative z-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-            
+
             {/* Logo Section */}
             <div className="flex flex-col items-center sm:items-start">
               <img
-                src="/logo.png" 
+                src="/logo.png"
                 alt="Babal Restaurant"
                 className="h-16 sm:h-20 md:h-24 w-auto object-contain mb-3"
               />
@@ -57,31 +56,22 @@ const Footer: React.FC = () => {
             <div className="text-center sm:text-left">
               <h3 className="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-[#E4B951]">Quick Links</h3>
               <ul className="space-y-1.5 sm:space-y-2">
-                <li>
-                  <a href="/" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/about" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a href="/menu" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
-                    Our Menu
-                  </a>
-                </li>
-                <li>
-                  <a href="/blog" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a href="/reservation" className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block">
-                    Reservation
-                  </a>
-                </li>
+                {[
+                  { label: 'Home', href: '/' },
+                  { label: 'About Us', href: '/about' },
+                  { label: 'Our Menu', href: '/menu' },
+                  { label: 'Blog', href: '/blog' },
+                  { label: 'Reservation', href: '/reservation' },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <a
+                      href={href}
+                      className="text-xs sm:text-sm text-zinc-300 hover:text-[#E4B951] transition-all duration-300 hover:translate-x-1 inline-block"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -89,61 +79,92 @@ const Footer: React.FC = () => {
             <div className="text-center sm:text-left">
               <h3 className="text-sm sm:text-base font-semibold mb-3 sm:mb-4 text-[#E4B951]">Our Info</h3>
               <div className="space-y-2 mb-4">
-                <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
-                  <span className="text-[#E4B951] font-semibold">Visit Us:</span>
-                  <a className="hover:text-[#E4B951] transition-colors">
-                    Amsterdam
+
+                <p className="text-zinc-300 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-2">
+                  <span className="text-[#E4B951] font-semibold">KVK:</span>
+                  <span>98219146</span>
+                </p>
+
+                <p className="text-zinc-300 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-2">
+                  <span className="text-[#E4B951] font-semibold">BTW NO:</span>
+                  <span>NL868404767B01</span>
+                </p>
+
+                <p className="text-zinc-300 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-2">
+                  <Phone size={13} className="text-[#E4B951] shrink-0" />
+                  <a href="tel:+31202330673" className="hover:text-[#E4B951] transition-colors">
+                    +31 20 233 0673
                   </a>
                 </p>
-                <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
-                  <span className="text-[#E4B951] font-semibold">Email:</span>
-                  <a href="mailto:info@babalrestaurant.com" className="hover:text-[#E4B951] transition-colors break-all">
-                    hello@babal.nl
+
+                <p className="text-zinc-300 text-xs sm:text-sm flex items-center justify-center sm:justify-start gap-2">
+                  <Mail size={13} className="text-[#E4B951] shrink-0" />
+                  <a href="mailto:babalrestaurant10@gmail.com" className="hover:text-[#E4B951] transition-colors break-all">
+                    babalrestaurant10@gmail.com
                   </a>
                 </p>
-                <p className="text-zinc-300 text-xs sm:text-sm">
-                  <span className="text-[#E4B951] font-semibold">Opening Hours:</span> Tuesday-Sunday: 12:00-22:0 <br />Monday: Closed
+
+                <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
+                  <Clock size={13} className="text-[#E4B951] shrink-0 mt-0.5" />
+                  <span>Tuesday – Sunday: 12:00 – 22:00<br />Monday: Closed</span>
                 </p>
+
+                <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
+                  <MapPin size={13} className="text-[#E4B951] shrink-0 mt-0.5" />
+                  <a
+                    href="https://maps.google.com/?q=Halvemaansteeg+10H+Amsterdam"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[#E4B951] transition-colors"
+                  >
+                    Halvemaansteeg 10H, 1017 CR Amsterdam
+                  </a>
+                </p>
+
               </div>
 
               <h4 className="text-xs sm:text-sm font-semibold mb-2 text-[#E4B951]">Follow Us</h4>
               <div className="flex justify-center sm:justify-start space-x-3 sm:space-x-4">
-                <a 
-                  href="https://facebook.com" 
+
+                <a
+                  href="https://facebook.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook" 
+                  aria-label="Facebook"
                   className="group relative"
                 >
-                  <div className="absolute inset-0 bg-blue-600 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-blue-600 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
                   <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-blue-600 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
                     <Facebook size={18} className="sm:w-5 sm:h-5 text-[#E4B951] group-hover:text-white transition-colors duration-300" />
                   </div>
                 </a>
-                <a 
-                  href="https://instagram.com" 
+
+                <a
+                  href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram" 
+                  aria-label="Instagram"
                   className="group relative"
                 >
-                  <div className="absolute inset-0 bg-pink-600 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
-                  <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-linear-to-br group-hover:from-purple-600 group-hover:via-pink-600 group-hover:to-orange-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-pink-600 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                  <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:via-pink-600 group-hover:to-orange-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
                     <Instagram size={18} className="sm:w-5 sm:h-5 text-[#E4B951] group-hover:text-white transition-colors duration-300" />
                   </div>
                 </a>
-                <a 
-                  href="https://twitter.com" 
+
+                <a
+                  href="https://twitter.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Twitter" 
+                  aria-label="Twitter"
                   className="group relative"
                 >
-                  <div className="absolute inset-0 bg-sky-500 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-sky-500 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
                   <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-sky-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
                     <Twitter size={18} className="sm:w-5 sm:h-5 text-[#E4B951] group-hover:text-white transition-colors duration-300" />
                   </div>
                 </a>
+
               </div>
             </div>
           </div>
