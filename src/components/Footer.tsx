@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
 
                 <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
                   <Clock size={13} className="text-[#E4B951] shrink-0 mt-0.5" />
-                  <span>Tuesday – Sunday: 12:00 – 22:00<br />Monday: Closed</span>
+                  <span>Opening: 13:00 🕐 till 00:30 🕐</span>
                 </p>
 
                 <p className="text-zinc-300 text-xs sm:text-sm flex items-start justify-center sm:justify-start gap-2">
@@ -147,7 +147,7 @@ const Footer: React.FC = () => {
                   className="group relative"
                 >
                   <div className="absolute inset-0 bg-pink-600 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-                  <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:via-pink-600 group-hover:to-orange-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
+                  <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-linear-to-br group-hover:from-purple-600 group-hover:via-pink-600 group-hover:to-orange-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
                     <Instagram size={18} className="sm:w-5 sm:h-5 text-[#E4B951] group-hover:text-white transition-colors duration-300" />
                   </div>
                 </a>
