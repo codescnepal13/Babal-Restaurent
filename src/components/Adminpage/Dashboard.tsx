@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FolderTree, Utensils, TrendingUp, BarChart3, BookOpen, Eye, Calendar, Users, Clock, CheckCircle2, XCircle } from 'lucide-react';
+import { FolderTree, Utensils, TrendingUp, BarChart3, BookOpen, Eye, Calendar, Users, Clock, CheckCircle2, XCircle, X, MessageSquare } from 'lucide-react';
 import apiService, { type Category, type BlogPost, type Reservation } from '../../services/apiService';
 
 const WelcomeCard = ({ adminName }: { adminName: string }) => (
@@ -42,6 +42,71 @@ const StatsCard = ({ title, value, icon, subtitle, trend }: {
     )}
   </div>
 );
+
+const SpecialRequestModal = ({ message, guestName, onClose }: { message: string; guestName: string; onClose: () => void }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+    <div
+      className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#E4B951]/20 rounded-xl flex items-center justify-center">
+            <MessageSquare className="w-5 h-5 text-[#E4B951]" />
+          </div>
+          <div>
+            <p className="text-xs text-zinc-400 font-medium uppercase tracking-wide">Special Request</p>
+            <p className="font-bold text-zinc-800">{guestName}</p>
+          </div>
+        </div>
+        <button
+          onClick={onClose}
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100 hover:bg-zinc-200 transition-colors"
+        >
+          <X size={16} className="text-zinc-600" />
+        </button>
+      </div>
+      <div className="bg-zinc-50 rounded-xl p-4 border border-zinc-100">
+        <p className="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap break-words">{message}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const SpecialRequestCell = ({ message, guestName }: { message: string | undefined; guestName: string }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  if (!message) {
+    return <p className="text-sm text-zinc-400 italic">No special requests</p>;
+  }
+
+  const isLong = message.length > 50;
+
+  return (
+    <>
+      <div className="flex items-center gap-2 max-w-xs">
+        <p className="text-sm text-zinc-600 line-clamp-1 flex-1">{message}</p>
+        {isLong && (
+          <button
+            onClick={() => setModalOpen(true)}
+            className="shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-[#E4B951]/10 hover:bg-[#E4B951]/20 transition-colors"
+            title="View full message"
+          >
+            <MessageSquare size={14} className="text-[#E4B951]" />
+          </button>
+        )}
+      </div>
+      {modalOpen && (
+        <SpecialRequestModal
+          message={message}
+          guestName={guestName}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
+    </>
+  );
+};
 
 const Dashboard: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -251,13 +316,7 @@ const Dashboard: React.FC = () => {
                       </div>
                     </td>
                     <td className="py-4 px-6">
-                      {reservation.message ? (
-                        <p className="text-sm text-zinc-600 line-clamp-2 max-w-xs" title={reservation.message}>
-                          {reservation.message}
-                        </p>
-                      ) : (
-                        <p className="text-sm text-zinc-400 italic">No special requests</p>
-                      )}
+                      <SpecialRequestCell message={reservation.message} guestName={reservation.fullName} />
                     </td>
                   </tr>
                 ))}

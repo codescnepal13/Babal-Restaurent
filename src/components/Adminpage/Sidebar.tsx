@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LogOut, Menu, X } from 'lucide-react';
+import { Link } from "react-router-dom";
 
 interface SidebarProps {
   activeTab: string;
@@ -61,7 +62,9 @@ const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout }) 
       {/* Logo */}
       <div className="p-6 border-b border-zinc-800">
         <div className="flex items-center space-x-2">
+          <Link to="/">
           <img src="/logo.png" alt="Babal Restaurant" className="w-32 h-auto" />
+          </Link>
         </div>
       </div>
 

@@ -1,8 +1,75 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, RefreshCw, Calendar, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, RefreshCw, Calendar, X, MessageSquare } from 'lucide-react';
 import type { Reservation } from '../../services/apiService';
 import apiService from '../../services/apiService';
 
+
+const SpecialRequestModal = ({ message, guestName, onClose }: { message: string; guestName: string; onClose: () => void }) => (
+  <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+    <div
+      className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#E4B951]/20 rounded-xl flex items-center justify-center">
+            <MessageSquare className="w-5 h-5 text-[#E4B951]" />
+          </div>
+          <div>
+            <p className="text-xs text-zinc-400 font-medium uppercase tracking-wide">Special Request</p>
+            <p className="font-bold text-zinc-800">{guestName}</p>
+          </div>
+        </div>
+        <button
+          onClick={onClose}
+          className="w-8 h-8 flex items-center justify-center rounded-full bg-zinc-100 hover:bg-zinc-200 transition-colors"
+        >
+          <X size={16} className="text-zinc-600" />
+        </button>
+      </div>
+      <div className="bg-zinc-50 rounded-xl p-4 border border-zinc-100">
+        <p className="text-sm text-zinc-700 leading-relaxed whitespace-pre-wrap break-words">{message}</p>
+      </div>
+    </div>
+  </div>
+);
+
+const MessageCell = ({ message, guestName }: { message: string | undefined; guestName: string }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  if (!message) {
+    return <span className="text-zinc-400 italic text-sm">No message</span>;
+  }
+
+  const isLong = message.length > 30;
+
+  return (
+    <>
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-zinc-600">
+          {isLong ? `${message.substring(0, 30)}...` : message}
+        </span>
+        {isLong && (
+          <button
+            onClick={() => setModalOpen(true)}
+            className="shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-[#E4B951]/10 hover:bg-[#E4B951]/20 transition-colors"
+            title="View full message"
+          >
+            <MessageSquare size={14} className="text-[#E4B951]" />
+          </button>
+        )}
+      </div>
+      {modalOpen && (
+        <SpecialRequestModal
+          message={message}
+          guestName={guestName}
+          onClose={() => setModalOpen(false)}
+        />
+      )}
+    </>
+  );
+};
 
 const ReservationList: React.FC = () => {
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -292,15 +359,7 @@ const ReservationList: React.FC = () => {
                       {formatTime(reservation.time)}
                     </td>
                     <td className="py-4 px-4 text-zinc-600 max-w-xs">
-                      {reservation.message ? (
-                        <span className="text-sm" title={reservation.message}>
-                          {reservation.message.length > 30 
-                            ? `${reservation.message.substring(0, 30)}...` 
-                            : reservation.message}
-                        </span>
-                      ) : (
-                        <span className="text-zinc-400 italic text-sm">No message</span>
-                      )}
+                      <MessageCell message={reservation.message} guestName={reservation.fullName} />
                     </td>
                   </tr>
                 ))}
@@ -355,4 +414,3 @@ const ReservationList: React.FC = () => {
 };
 
 export default ReservationList;
-

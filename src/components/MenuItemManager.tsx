@@ -466,7 +466,7 @@ const MenuItemManager: React.FC = () => {
                     className="border border-zinc-200 rounded-lg p-6 hover:shadow-md transition-shadow"
                   >
                     <div className="flex gap-4">
-                      <div className="w-24 h-24 bg-zinc-100 rounded-lg overflow-hidden flex-shrink-0">
+                      <div className="w-24 h-24 bg-zinc-100 rounded-lg overflow-hidden shrink-0">
                         {item.images && item.images.length > 0 ? (
                           <img
                             src={item.images[0]}

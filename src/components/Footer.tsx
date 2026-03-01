@@ -159,16 +159,16 @@ const Footer: React.FC = () => {
                   aria-label="Twitter"
                   className="group relative"
                 >
-                  <div className="absolute inset-0 bg-sky-500 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
-                  <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-sky-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
+                  <div className="absolute inset-0 bg-black-500 rounded-full blur-md opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                  <div className="relative bg-zinc-800 p-2 rounded-full group-hover:bg-black-500 transition-all duration-300 transform group-hover:scale-110 group-hover:-translate-y-1">
                     <svg
                      viewBox="0 0 24 24"
-                     className="w-[18px] h-[18px] sm:w-5 sm:h-5 text-[#E4B951] group-hover:text-white transition-colors duration-300"
+                     className="w-4.5 h-4.5 sm:w-5 sm:h-5 text-[#E4B951] group-hover:text-white transition-colors duration-300"
                      fill="currentColor"
                      aria-hidden="true"
                     >
-  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-</svg>
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.259 5.63 5.905-5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                   </div>
                 </a>
 
